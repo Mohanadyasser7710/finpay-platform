@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: finpay-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: finpay_admin
+      POSTGRES_PASSWORD: finpay_root_password
+      POSTGRES_DB: finpay_user_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - finpay_pg_data:/var/lib/postgresql/data
+
+volumes:
+  finpay_pg_data:
