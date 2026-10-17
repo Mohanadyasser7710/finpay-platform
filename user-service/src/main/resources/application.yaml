@@ -19,3 +19,9 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  security:
+    jwt:
+      secret-key: ${JWT_SECRET:dGhpcy1pcy1hLXZlcnktc2VjdXJlLWJhc2U2NC1lbmNvZGVkLXNlY3JldC1rZXktZm9yLWZpbnBheS13aGljaC1pcy1hdC1sZWFzdC0yNTYtYml0cy1sb25nCg==}
+      issuer: ${JWT_ISSUER:finpay-user-service}
+      expiry-time-in-seconds: ${JWT_EXPIRY:900}
