@@ -19,16 +19,15 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
 public class JwtTokenProvider {
 
-    @Value("${security.jwt.secret-key}")
+    @Value("${spring.security.jwt.secret-key}")
     private String secret;
 
-    @Value("${security.jwt.issuer}")
+    @Value("${spring.security.jwt.issuer}")
     private String issuer;
 
-    @Value("${security.jwt.expiry-time-in-seconds}")
+    @Value("${spring.security.jwt.expiry-time-in-seconds}")
     private Long expiryTimeInSeconds;
 
     public String createToken(Authentication auth){

@@ -16,6 +16,7 @@ public class RegisterRequestDto {
     @NotBlank(message = "email cannot be blank")
     private String email;
     @Size(min = 8,max = 26,message = "password must be more than 8 chars and less than 26")
+    @NotBlank(message = "password cannot be blank")
     private String password;
 
 }
