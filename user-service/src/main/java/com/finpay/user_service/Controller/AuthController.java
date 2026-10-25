@@ -2,9 +2,14 @@ package com.finpay.user_service.Controller;
 
 import com.finpay.user_service.dto.AuthResponseDto;
 import com.finpay.user_service.dto.LoginRequestDto;
+import com.finpay.user_service.dto.RegisterRequestDto;
+import com.finpay.user_service.dto.RegisterResponseDto;
 import com.finpay.user_service.security.CustomUserDetails;
 import com.finpay.user_service.security.JwtTokenProvider;
+import com.finpay.user_service.service.AuthService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
+    private final AuthService authService;
     @PostMapping("/Login")
     public ResponseEntity<AuthResponseDto> login(@RequestBody LoginRequestDto loginRequestDto){
         Authentication authentication=authenticationManager.authenticate(
@@ -39,4 +45,12 @@ public class AuthController {
                 role
         ));
     }
+
+    @PostMapping("/register")
+    public ResponseEntity<RegisterResponseDto> register(@Valid @RequestBody RegisterRequestDto dto){
+        RegisterResponseDto newDto=authService.registerUser(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newDto);
+    }
+
+
 }
